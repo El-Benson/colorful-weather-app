@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Live weather information with beautiful visuals"
+    />
+    <title>Weather Results</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="weather.html">Weather</a>
+      <a href="about.html">About</a>
+    </nav>
+    <main class="weather">
+      <div id="background" aria-hidden="true"></div>
+      <section id="weatherInfo" role="region" aria-live="polite"></section>
+      <a href="index.html">🔙 Back</a>
+    </main>
+    <script type="module" src="./js/weather.js"></script>
+  </body>
+</html>

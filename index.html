@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A colorful weather app using OpenWeatherMap and Unsplash APIs"
+    />
+    <title>Michael Benson Colorful Weather App</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="weather.html">Weather</a>
+      <a href="about.html">About</a>
+    </nav>
+    <main class="home">
+      <h1>🌈 Welcome to Michael Benson ColorCast</h1>
+      <form id="searchForm" aria-label="Search form">
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Enter city name..."
+          required
+          aria-label="City name"
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+      <div class="loader hidden" id="loader" aria-hidden="true"></div>
+    </main>
+    <script type="module" src="./js/home.js"></script>
+  </body>
+</html>
