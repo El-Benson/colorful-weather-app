@@ -2,6 +2,7 @@ import {
   getCityCoordinates,
   getWeather,
   getWeatherDescription,
+  getBackgroundImage, // ✅ Make sure this is included
 } from "./weather-api.js";
 
 const form = document.querySelector("form");
@@ -17,6 +18,7 @@ if (cached) {
   const parsed = JSON.parse(cached);
   displayWeather(parsed, parsed.cityName);
   displayHourlyForecast(parsed);
+  updateBackgroundImage(parsed.cityName); // ✅ Show image from cached city
 }
 
 // Handle form submission
@@ -31,9 +33,10 @@ form.addEventListener("submit", async (e) => {
     weatherData.cityName = city;
 
     localStorage.setItem("weatherData", JSON.stringify(weatherData));
+
     displayWeather(weatherData, city);
     displayHourlyForecast(weatherData);
-    await updateBackgroundImage(city);
+    await updateBackgroundImage(city); // ✅ Background image is updated here
   } catch (error) {
     infoDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
   }
@@ -100,11 +103,13 @@ darkModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
+// ✅ Clean, non-duplicated background update function
 async function updateBackgroundImage(city) {
   try {
     const imageUrl = await getBackgroundImage(city);
-    body.style.backgroundImage = `url(${imageUrl})`;
-  } catch {
+    body.style.backgroundImage = `url('${imageUrl}')`;
+  } catch (err) {
+    console.error("Background update failed:", err.message);
     body.style.backgroundImage = "";
   }
 }
