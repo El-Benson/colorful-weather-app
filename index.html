@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <!-- Navigation -->
     <nav>
       <a href="index.html">Home</a>
       <a href="weather.html">Weather</a>
       <a href="about.html">About</a>
     </nav>
+
     <main class="home">
+      <!-- Welcome Header -->
       <h1>🌈 Welcome to Michael Benson ColorCast</h1>
+
+      <!-- Search Form -->
       <form id="searchForm" aria-label="Search form">
         <input
           type="text"
@@ -28,8 +33,30 @@
         />
         <button type="submit">Get Weather</button>
       </form>
+
+      <!-- New controls section for toggles -->
+      <div class="controls">
+        <button id="toggleForecast">Show Forecast</button>
+        <button id="darkModeBtn">🌓 Toggle Dark Mode</button>
+      </div>
+
+      <!-- Loader while fetching weather -->
       <div class="loader hidden" id="loader" aria-hidden="true"></div>
+
+      <!-- Weather info will be injected here -->
+      <div class="info"></div>
+
+      <!-- Hourly Forecast Section (hidden by default) -->
+      <div class="forecast hidden" id="forecastSection">
+        <h2>Hourly Forecast</h2>
+        <div id="forecastDetails"></div>
+        <!-- New Hourly Forecast Section -->
+        <section id="hourly-forecast" class="forecast-grid"></section>
+      </div>
+      <div id="hourly-forecast"></div>
     </main>
+
+    <!-- External JavaScript -->
     <script type="module" src="./js/home.js"></script>
   </body>
 </html>
