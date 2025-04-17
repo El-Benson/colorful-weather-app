@@ -6,6 +6,7 @@ body {
   background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
   color: #333;
   line-height: 1.6;
+  transition: background 0.3s ease;
 }
 
 nav {
@@ -37,17 +38,27 @@ button {
   border-radius: 8px;
   margin: 0.5em;
   font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 button {
   background-color: #ff6ec4;
   color: white;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
 }
 
 button:hover {
   transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95); /* Slight shrink on click */
+}
+
+input:focus,
+button:focus {
+  outline: 2px solid #ff6ec4;
+  outline-offset: 4px;
 }
 
 #background {
@@ -124,39 +135,35 @@ button:hover {
 }
 
 .weather-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
   margin: 2em auto;
   padding: 2em;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 700px;
-}
-
-.weather-container h2 {
-  color: #333;
-  margin-bottom: 0.5em;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .weather-details {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* More flexible */
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .weather-card {
-  background: #66a6ff;
-  color: white;
-  padding: 1em;
-  margin: 0.5em;
-  border-radius: 10px;
-  width: 150px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  background: #ffffffcc;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .weather-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .weather-card h3 {
@@ -168,4 +175,209 @@ button:hover {
   width: 60px;
   height: 60px;
   margin: 0.5em 0;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+.dark-mode nav {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .weather-card {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode .weather-container {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background for containers */
+}
+
+.dark-mode .forecast-card {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555; /* Slight border for separation */
+}
+
+.dark-mode .hour-card {
+  background-color: #555;
+  color: #fff;
+}
+
+.dark-mode .about {
+  background-color: #222;
+  color: #ddd;
+}
+
+.dark-mode .team-member img {
+  border: 3px solid #ff6ec4;
+}
+
+.controls {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Forecast section */
+#forecastDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.forecast-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.4s ease;
+}
+
+.forecast-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .forecast-card {
+  background-color: #333;
+  color: #fff;
+}
+
+.hour-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+.hour-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+/* Add transition for smooth hover effect */
+.hour {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hour:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+.forecast-card,
+.hour-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Make it clear these cards are interactive */
+}
+
+.forecast-card:hover,
+.hour-card:hover {
+  transform: translateY(-5px); /* Lift effect for more depth */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for focus */
+}
+body {
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode body {
+  background: linear-gradient(135deg, #121212 0%, #333333 100%);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loaderAnimation {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+.loader {
+  animation: loaderAnimation 1.5s infinite;
+}
+
+/* Mobile-first styles */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .forecast-card {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .forecast-details {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* Ensure buttons and inputs are easily tappable */
+  input,
+  button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* For tablets and larger screens */
+@media (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .forecast-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .forecast-details {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(180px, 1fr)
+    ); /* Adjust grid layout */
+  }
+}
+
+/* For large screens (desktops) */
+@media (min-width: 1024px) {
+  .forecast-card {
+    padding: 20px;
+    font-size: 1.2em;
+  }
 }
