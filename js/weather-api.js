@@ -10,7 +10,6 @@ export async function getCityCoordinates(city) {
     throw new Error("City not found");
   }
 
-  // Return first match { latitude, longitude }
   const { latitude: lat, longitude: lon } = data.results[0];
   return { lat, lon };
 }
@@ -18,7 +17,7 @@ export async function getCityCoordinates(city) {
 // Get weather data from Open-Meteo API
 export async function getWeather(lat, lon) {
   const res = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,windspeed_10m,weathercode&current_weather=true&timezone=auto`
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,windspeed_10m,weathercode,relative_humidity_2m,cloudcover,apparent_temperature,precipitation&current_weather=true&timezone=auto`
   );
   if (!res.ok) throw new Error("Failed to fetch weather data");
 
@@ -58,4 +57,16 @@ export function getWeatherDescription(code) {
     99: "Thunderstorm with heavy hail",
   };
   return descriptionMap[code] || "Unknown weather";
+}
+
+// Get background image from Unsplash API
+export async function getBackgroundImage(city) {
+  const accessKey = "YOUR_UNSPLASH_ACCESS_KEY"; // Replace this with your actual Unsplash API key
+  const res = await fetch(
+    `https://api.unsplash.com/photos/random?query=${city} weather&client_id=${accessKey}`
+  );
+  if (!res.ok) throw new Error("Image fetch failed");
+
+  const data = await res.json();
+  return data.urls.regular;
 }
